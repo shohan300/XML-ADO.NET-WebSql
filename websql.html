@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2 >EMPLOYEE INFORMATION</h2>
+
+            <table class="tbl_box" id="tblinsert">  
+                <tr>  
+                    <td>Employee ID:</td>  
+
+                    <td > 
+                        <input  type="text" id="tbID" /> 
+                    </td>
+                       
+                </tr>
+                
+                <tr>  
+                    <td class="td_color">Employe Name:</td>  
+                    <td><input type="text" id="tbName" /></td>  
+                </tr> 
+
+                <tr >  
+                    <td class="td_color">Email:</td>  
+                    <td><input  type="text" id="tbLocation" /></td>  
+                </tr>  
+      
+                <tr>  
+                    <td class="td_color">Department:</td>  
+                    <td> <select class="tbl_lst" id="tbLdept"></select> </td>  
+                </tr>  
+
+                <tr>  
+                    <td class="td_color">Image Upload:</td>  
+                    <td><input type='file' id="image" onchange="readURL(this);" /></td>  
+                </tr> 
+                
+            </table>
+
+            <br/> <br/>
+            
+            <div class="left">
+                <img id="blah" src="images/placeholder.png" alt="" /><br>
+            </div>
+            <br />
+
+            <!--Dropdowm------------------------------------------------------------------ -->
+            <div id="dropZone"> Drop your file here....</div>
+            <!--Dropdowm------------------------------------------------------------------ -->
+            <br/>
+
+            <!-- Insert, update, Delete Button-->
+            <button class="btnInsert" id="btnInsert" onclick="Insert()"> Insert </button>
+
+            <button id="btnupdate" onclick="updte()"> Update </button>
+
+            <button id="btndel" onclick="del()"> Delete </button>
+            <!--Button-->  
+
+
+
+
+            <!-- Update,  Delete, Save Button-->
+            <br /><br />  
+
+            <table class="selectid">
+                <tr>  
+                    <td>ID:</td>  
+                    <td id="tdid">  
+                        <select id="ddlid" style="width: 50px;" onchange="myFunction()"></select>  
+                    </td>
+                    <td >  
+                        <button onclick="empidbind()"> Show </button>  
+                    </td> 
+                </tr>
+            </table>
+            <br /><br />
+            
+
+
+            <!-- Database Table-->
+            <table class="tbl" id="tblGrid">     
+                <tr>  
+                    <td> Employee ID</td>  
+                    <td> Employee Name</td>  
+                    <td> Email </td>  
+                    <td> Department </td> 
+                    <td> Image </td>  
+                </tr>
+            </table>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        document.getElementById('dropZone').addEventListener('dragover',  (e) =>{
+        e.preventDefault();
+        });
+
+        document.getElementById('dropZone').addEventListener('drop',  (e) =>{
+            e.preventDefault();
+            var files = e.dataTransfer.files;
+            
+            if (files && files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imageName=e.target.result;
+                    $('#blah').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(files[0]);
+            }
+            });
+    </script>
+
+</body>
+</html>
